@@ -1,0 +1,13 @@
+dataset_size_per_class: 100
+image_size:
+- 28
+- 28
+input_shape:
+- 28
+- 28
+- 3
+output_shape:
+- 10
+preprocessing:
+  normalize: true
+type: image
