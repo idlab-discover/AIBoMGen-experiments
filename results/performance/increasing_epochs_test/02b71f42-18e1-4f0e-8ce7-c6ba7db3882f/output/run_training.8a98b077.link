@@ -1,0 +1,40 @@
+{
+ "signatures": [
+  {
+   "keyid": "8a98b0773b596abdb6a3c5dc1afc620ee37a2cf5357ce90c9746fab2633162f0",
+   "sig": "ba5ea9cd063b8109a10b6d8343447b9cf0632472382968458378a0b697b953ac85edd3eb5ba50e89371b93c9980abd38bf6eaff28d4a562960f7ab3638c7d20a"
+  }
+ ],
+ "signed": {
+  "_type": "link",
+  "byproducts": {
+   "stdout": "Task completed successfully."
+  },
+  "command": [
+   "python",
+   "tasks.py",
+   "run_training"
+  ],
+  "environment": {},
+  "materials": {
+   "02b71f42-18e1-4f0e-8ce7-c6ba7db3882f/dataset/cifar10_dataset.zip": {
+    "sha256": "f6cc28622985a1250a97f6d82f7cd5063056bb8bad573dbd74532649af0128fe"
+   },
+   "02b71f42-18e1-4f0e-8ce7-c6ba7db3882f/definition/cifar10_definition.yaml": {
+    "sha256": "8a10547232bb70aece732dee67e575295817e7b5e25a12d576667b2609cbbb02"
+   },
+   "02b71f42-18e1-4f0e-8ce7-c6ba7db3882f/model/cifar10_model.keras": {
+    "sha256": "c97e2f362add134ddb1ee6398d451177ae6ba3fe70259823d11b1c6bb3d913c7"
+   }
+  },
+  "name": "run_training",
+  "products": {
+   "02b71f42-18e1-4f0e-8ce7-c6ba7db3882f/output/metrics.json": {
+    "sha256": "9ae9cefb8f43a2f8d090512ad9581df620cbe9b21e3a3f7c253b6bd4e575d2ce"
+   },
+   "02b71f42-18e1-4f0e-8ce7-c6ba7db3882f/output/trained_model.keras": {
+    "sha256": "617444555124447d208676dc9241387871f5d2aa63ec0623138e704c32e28399"
+   }
+  }
+ }
+}

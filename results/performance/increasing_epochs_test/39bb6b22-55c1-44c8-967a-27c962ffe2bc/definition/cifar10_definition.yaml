@@ -1,0 +1,12 @@
+image_size:
+- 32
+- 32
+input_shape:
+- 32
+- 32
+- 3
+output_shape:
+- 10
+preprocessing:
+  normalize: true
+type: image
