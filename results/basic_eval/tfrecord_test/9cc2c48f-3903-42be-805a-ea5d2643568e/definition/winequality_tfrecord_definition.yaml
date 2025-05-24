@@ -1,0 +1,15 @@
+features:
+  features:
+    dtype: float32
+    shape:
+    - 11
+input_shape:
+- 11
+label:
+  dtype: int64
+  name: label
+output_shape:
+- 6
+preprocessing:
+  normalize: true
+type: tfrecord

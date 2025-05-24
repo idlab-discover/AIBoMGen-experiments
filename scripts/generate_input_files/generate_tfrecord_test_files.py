@@ -4,88 +4,109 @@ import numpy as np
 import tensorflow as tf
 import yaml
 
-# File paths
-downloads_folder = os.path.join(os.path.expanduser("~"), "Downloads")
-dataset_filename = os.path.join(downloads_folder, "winequality.tfrecord")
-yaml_filename = os.path.join(
-    downloads_folder, "winequality_tfrecord_definition.yaml")
-model_filename = os.path.join(
-    downloads_folder, "winequality_tfrecord_model.keras")
 
-# Download the real-life Wine Quality dataset
-wine_url = "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
-df = pd.read_csv(wine_url, sep=';')
+def generate_tfrecord_test_files(output_dir):
+    """
+    Generates a TFRecord dataset, YAML definition, and a simple model for tabular testing.
 
-# Prepare features and labels
-X = df.drop("quality", axis=1).values.astype(np.float32)
-y = df["quality"].values
+    Args:
+        output_dir (str): The directory where the generated files will be saved.
 
-# Map labels to 0-based
-unique_labels = np.sort(np.unique(y))
-label_map = {v: i for i, v in enumerate(unique_labels)}
-y = np.array([label_map[val] for val in y], dtype=np.int64)
-num_classes = len(unique_labels)
-num_features = X.shape[1]
+    Returns:
+        dict: Paths to the generated files (dataset, YAML, and model).
+    """
+    os.makedirs(output_dir, exist_ok=True)
 
-# Save the TFRecord (features + label)
+    # File paths
+    dataset_filename = os.path.join(output_dir, "winequality.tfrecord")
+    yaml_filename = os.path.join(
+        output_dir, "winequality_tfrecord_definition.yaml")
+    model_filename = os.path.join(
+        output_dir, "winequality_tfrecord_model.keras")
 
+    # Download the real-life Wine Quality dataset
+    wine_url = "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
+    df = pd.read_csv(wine_url, sep=';')
 
-def _float_feature(value):
-    return tf.train.Feature(float_list=tf.train.FloatList(value=value))
+    # Prepare features and labels
+    X = df.drop("quality", axis=1).values.astype(np.float32)
+    y = df["quality"].values
 
+    # Map labels to 0-based
+    unique_labels = np.sort(np.unique(y))
+    label_map = {v: i for i, v in enumerate(unique_labels)}
+    y = np.array([label_map[val] for val in y], dtype=np.int64)
+    num_classes = len(unique_labels)
+    num_features = X.shape[1]
 
-def _int64_feature(value):
-    return tf.train.Feature(int64_list=tf.train.Int64List(value=[value]))
+    # Save the TFRecord (features + label)
+    def _float_feature(value):
+        return tf.train.Feature(float_list=tf.train.FloatList(value=value))
 
+    def _int64_feature(value):
+        return tf.train.Feature(int64_list=tf.train.Int64List(value=[value]))
 
-with tf.io.TFRecordWriter(dataset_filename) as writer:
-    for features, label in zip(X, y):
-        feature = {
-            "features": _float_feature(features),
-            "label": _int64_feature(label)
-        }
-        example = tf.train.Example(features=tf.train.Features(feature=feature))
-        writer.write(example.SerializeToString())
-print(f"TFRecord dataset saved to {dataset_filename}")
+    with tf.io.TFRecordWriter(dataset_filename) as writer:
+        for features, label in zip(X, y):
+            feature = {
+                "features": _float_feature(features),
+                "label": _int64_feature(label)
+            }
+            example = tf.train.Example(
+                features=tf.train.Features(feature=feature))
+            writer.write(example.SerializeToString())
+    print(f"TFRecord dataset saved to {dataset_filename}")
 
-# Save the YAML definition
-dataset_definition = {
-    "type": "tfrecord",
-    "input_shape": [num_features],
-    "output_shape": [num_classes],
-    "features": {
+    # Save the YAML definition
+    dataset_definition = {
+        "type": "tfrecord",
+        "input_shape": [num_features],
+        "output_shape": [num_classes],
         "features": {
-            "shape": [num_features],
-            "dtype": "float32"
+            "features": {
+                "shape": [num_features],
+                "dtype": "float32"
+            }
+        },
+        "label": {
+            "name": "label",
+            "dtype": "int64"
+        },
+        "preprocessing": {
+            "normalize": True
         }
-    },
-    "label": {
-        "name": "label",
-        "dtype": "int64"
-    },
-    "preprocessing": {
-        "normalize": True
     }
-}
-with open(yaml_filename, "w") as yaml_file:
-    yaml.dump(dataset_definition, yaml_file)
-print(f"Dataset definition saved to {yaml_filename}")
+    with open(yaml_filename, "w") as yaml_file:
+        yaml.dump(dataset_definition, yaml_file)
+    print(f"Dataset definition saved to {yaml_filename}")
 
-# Build and save a simple model
+    # Build and save a simple model
+    def create_wine_model(input_shape, num_classes):
+        model = tf.keras.Sequential([
+            tf.keras.layers.Input(shape=input_shape),
+            tf.keras.layers.Dense(64, activation='relu'),
+            tf.keras.layers.Dense(32, activation='relu'),
+            tf.keras.layers.Dense(num_classes, activation='softmax')
+        ])
+        model.compile(optimizer='adam',
+                      loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+        return model
+
+    model = create_wine_model((num_features,), num_classes)
+    model.save(model_filename)
+    print(f"Model saved to {model_filename}")
+
+    return {
+        "dataset": dataset_filename,
+        "yaml": yaml_filename,
+        "model": model_filename
+    }
 
 
-def create_wine_model(input_shape, num_classes):
-    model = tf.keras.Sequential([
-        tf.keras.layers.Input(shape=input_shape),
-        tf.keras.layers.Dense(64, activation='relu'),
-        tf.keras.layers.Dense(32, activation='relu'),
-        tf.keras.layers.Dense(num_classes, activation='softmax')
-    ])
-    model.compile(optimizer='adam',
-                  loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-    return model
-
-
-model = create_wine_model((num_features,), num_classes)
-model.save(model_filename)
-print(f"Model saved to {model_filename}")
+# Example usage (optional, for testing purposes)
+if __name__ == "__main__":
+    root_dir = os.path.abspath(os.path.join(
+        os.path.dirname(__file__), "../.."))
+    tmp_folder = os.path.join(
+        root_dir, "results", "generate_tfrecord_test_files")
+    generate_tfrecord_test_files(tmp_folder)
