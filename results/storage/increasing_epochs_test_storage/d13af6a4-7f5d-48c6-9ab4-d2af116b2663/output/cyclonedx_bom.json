@@ -1,0 +1,383 @@
+{
+    "components": [
+        {
+            "bom-ref": "training-environment@1.0",
+            "description": "Details of the environment used for training",
+            "name": "Training Environment",
+            "properties": [
+                {
+                    "name": "CPU Count",
+                    "value": "16"
+                },
+                {
+                    "name": "Celery Queue",
+                    "value": "training_queue"
+                },
+                {
+                    "name": "Celery Task ID",
+                    "value": "b1ae5372-5c66-4540-9cab-07beebfa1bcb"
+                },
+                {
+                    "name": "Celery Task Name",
+                    "value": "tasks.run_training"
+                },
+                {
+                    "name": "Disk Usage (MB)",
+                    "value": "1031018"
+                },
+                {
+                    "name": "Docker Container ID",
+                    "value": "9605e329a795"
+                },
+                {
+                    "name": "Docker Image ID",
+                    "value": "sha256:064a4f055472763603fc9dc14260a83da737037e9f92acd99a06f7d0acfe6f51"
+                },
+                {
+                    "name": "Docker Image Name",
+                    "value": "aibomgen-platform-worker:latest"
+                },
+                {
+                    "name": "GPU Memory Total (MB)",
+                    "value": "6144"
+                },
+                {
+                    "name": "GPU Memory Used (MB)",
+                    "value": "5818"
+                },
+                {
+                    "name": "GPU Name",
+                    "value": "NVIDIA GeForce RTX 3060 Laptop GPU"
+                },
+                {
+                    "name": "Job ID",
+                    "value": "b1ae5372-5c66-4540-9cab-07beebfa1bcb"
+                },
+                {
+                    "name": "Memory Total (MB)",
+                    "value": "15922"
+                },
+                {
+                    "name": "OS",
+                    "value": "Linux 5.15.167.4-microsoft-standard-WSL2"
+                },
+                {
+                    "name": "Python Version",
+                    "value": "3.11.0rc1"
+                },
+                {
+                    "name": "Request Time",
+                    "value": "2025-05-24 13:36:17"
+                },
+                {
+                    "name": "Start AIBoM Time",
+                    "value": "2025-05-24 13:36:25"
+                },
+                {
+                    "name": "Start Training Time",
+                    "value": "2025-05-24 13:36:20"
+                },
+                {
+                    "name": "TensorFlow Version",
+                    "value": "2.16.1"
+                },
+                {
+                    "name": "Training Time (seconds)",
+                    "value": "5.3291916847229"
+                },
+                {
+                    "name": "Unique Directory",
+                    "value": "d13af6a4-7f5d-48c6-9ab4-d2af116b2663"
+                },
+                {
+                    "name": "Vulnerability Scan Error",
+                    "value": "No vulnerability scan files found."
+                }
+            ],
+            "type": "container"
+        },
+        {
+            "bom-ref": "training-dataset@1.0",
+            "description": "Dataset and dataset definition used for training",
+            "hashes": [
+                {
+                    "alg": "SHA-256",
+                    "content": "54e8b611f8799697f4da427a23b6255bbb4615e35045046f2b99e56b66d11d2c"
+                },
+                {
+                    "alg": "SHA-256",
+                    "content": "b31dd54667af4265de773abd5957f75bc212d06685358a015a4dfc17866cd538"
+                }
+            ],
+            "name": "Training Dataset",
+            "properties": [
+                {
+                    "name": "Dataset Definition Hash",
+                    "value": "b31dd54667af4265de773abd5957f75bc212d06685358a015a4dfc17866cd538"
+                },
+                {
+                    "name": "Dataset Hash",
+                    "value": "54e8b611f8799697f4da427a23b6255bbb4615e35045046f2b99e56b66d11d2c"
+                },
+                {
+                    "name": "Dataset MinIO Path",
+                    "value": "d13af6a4-7f5d-48c6-9ab4-d2af116b2663/dataset/mnist_dataset.zip"
+                },
+                {
+                    "name": "Input Shape",
+                    "value": "[28, 28, 3]"
+                },
+                {
+                    "name": "Output Shape",
+                    "value": "[10]"
+                },
+                {
+                    "name": "Preprocessing",
+                    "value": "{\n    \"normalize\": true\n}"
+                }
+            ],
+            "type": "data"
+        },
+        {
+            "bom-ref": "trained-model@1.0",
+            "description": "Unknown",
+            "hashes": [
+                {
+                    "alg": "SHA-256",
+                    "content": "41a97f9dcfa09dc7cdfca503c124ad25b14eba4cf2aa11118d611b9c68159e78"
+                },
+                {
+                    "alg": "SHA-256",
+                    "content": "69a49305b44bf2e1c744662cdcad4873c354ad0a9149fd00ccc633ff68fc3893"
+                }
+            ],
+            "name": "storage_analysis_model_2_epochs",
+            "properties": [
+                {
+                    "name": "Architecture Summary",
+                    "value": "Name\tType\tShape\nconv2d\tConv2D\t(None, 26, 26, 32)\nmax_pooling2d\tMaxPooling2D\t(None, 13, 13, 32)\nflatten\tFlatten\t(None, 5408)\ndense\tDense\t(None, 128)\ndense_1\tDense\t(None, 10)"
+                },
+                {
+                    "name": "Fit Param: batch_size",
+                    "value": "32"
+                },
+                {
+                    "name": "Fit Param: epochs",
+                    "value": "2"
+                },
+                {
+                    "name": "Fit Param: initial_epoch",
+                    "value": "Unknown"
+                },
+                {
+                    "name": "Fit Param: steps_per_epoch",
+                    "value": "Unknown"
+                },
+                {
+                    "name": "Fit Param: validation_freq",
+                    "value": "1"
+                },
+                {
+                    "name": "Fit Param: validation_split",
+                    "value": "0.2"
+                },
+                {
+                    "name": "Fit Param: validation_steps",
+                    "value": "Unknown"
+                },
+                {
+                    "name": "Framework",
+                    "value": "TensorFlow 2.16.1"
+                },
+                {
+                    "name": "License",
+                    "value": "Unknown"
+                },
+                {
+                    "name": "Metric: accuracy",
+                    "value": "[0.766865074634552, 0.90004962682724]"
+                },
+                {
+                    "name": "Metric: loss",
+                    "value": "[9.149012565612793, 0.8468548655509949]"
+                },
+                {
+                    "name": "Metric: val_accuracy",
+                    "value": "[0.8925619721412659, 0.9028925895690918]"
+                },
+                {
+                    "name": "Metric: val_loss",
+                    "value": "[1.1528496742248535, 0.902478814125061]"
+                },
+                {
+                    "name": "Metrics Hash",
+                    "value": "69a49305b44bf2e1c744662cdcad4873c354ad0a9149fd00ccc633ff68fc3893"
+                },
+                {
+                    "name": "Optional Param: author",
+                    "value": "Unknown"
+                },
+                {
+                    "name": "Optional Param: framework",
+                    "value": "TensorFlow 2.16.1"
+                },
+                {
+                    "name": "Optional Param: license_name",
+                    "value": "Unknown"
+                },
+                {
+                    "name": "Optional Param: model_description",
+                    "value": "Unknown"
+                },
+                {
+                    "name": "Optional Param: model_name",
+                    "value": "storage_analysis_model_2_epochs"
+                },
+                {
+                    "name": "Optional Param: model_version",
+                    "value": "Unknown"
+                },
+                {
+                    "name": "Trained Model Hash",
+                    "value": "41a97f9dcfa09dc7cdfca503c124ad25b14eba4cf2aa11118d611b9c68159e78"
+                }
+            ],
+            "type": "machine-learning-model",
+            "version": "Unknown"
+        }
+    ],
+    "dependencies": [
+        {
+            "dependsOn": [
+                "training-dataset@1.0",
+                "training-environment@1.0"
+            ],
+            "ref": "trained-model@1.0"
+        },
+        {
+            "ref": "training-dataset@1.0"
+        },
+        {
+            "ref": "training-environment@1.0"
+        }
+    ],
+    "externalReferences": [
+        {
+            "comment": "in-toto .link file for artifact integrity verification",
+            "type": "attestation",
+            "url": "d13af6a4-7f5d-48c6-9ab4-d2af116b2663/output/run_training.8a98b077.link"
+        }
+    ],
+    "metadata": {
+        "authors": [
+            {
+                "email": "wiebe.vandendriessche@ugent.be",
+                "name": "AIBoMGen by Wiebe Vandendriessche"
+            }
+        ],
+        "manufacturer": {
+            "name": "IDLab from Imec, Ghent University",
+            "url": [
+                "https://www.idlab.ugent.be"
+            ]
+        },
+        "properties": [
+            {
+                "name": "BOM Signature",
+                "value": "40HlsZBC66yFkMG9EjV9AhjFIhTZ7E1ASVoCvhjQ8Tadub0dIdyggziugUKsjPJFjYKkV+1BTZsytYZ/Uy6ICQ=="
+            }
+        ],
+        "supplier": {
+            "name": "IDLab from Imec, Ghent University",
+            "url": [
+                "https://www.idlab.ugent.be"
+            ]
+        },
+        "tools": {
+            "components": [
+                {
+                    "description": "Python library for CycloneDX",
+                    "externalReferences": [
+                        {
+                            "type": "build-system",
+                            "url": "https://github.com/CycloneDX/cyclonedx-python-lib/actions"
+                        },
+                        {
+                            "type": "distribution",
+                            "url": "https://pypi.org/project/cyclonedx-python-lib/"
+                        },
+                        {
+                            "type": "documentation",
+                            "url": "https://cyclonedx-python-library.readthedocs.io/"
+                        },
+                        {
+                            "type": "issue-tracker",
+                            "url": "https://github.com/CycloneDX/cyclonedx-python-lib/issues"
+                        },
+                        {
+                            "type": "license",
+                            "url": "https://github.com/CycloneDX/cyclonedx-python-lib/blob/main/LICENSE"
+                        },
+                        {
+                            "type": "release-notes",
+                            "url": "https://github.com/CycloneDX/cyclonedx-python-lib/blob/main/CHANGELOG.md"
+                        },
+                        {
+                            "type": "vcs",
+                            "url": "https://github.com/CycloneDX/cyclonedx-python-lib"
+                        },
+                        {
+                            "type": "website",
+                            "url": "https://github.com/CycloneDX/cyclonedx-python-lib/#readme"
+                        }
+                    ],
+                    "group": "CycloneDX",
+                    "licenses": [
+                        {
+                            "license": {
+                                "acknowledgement": "declared",
+                                "id": "Apache-2.0"
+                            }
+                        }
+                    ],
+                    "name": "cyclonedx-python-lib",
+                    "type": "library",
+                    "version": "10.0.1"
+                },
+                {
+                    "bom-ref": "aibomgen@0.1.0",
+                    "description": "A platform for AI training and generating trusted AIBOMs",
+                    "group": "IDLab from Imec and Ghent University",
+                    "licenses": [
+                        {
+                            "license": {
+                                "id": "MIT"
+                            }
+                        }
+                    ],
+                    "name": "AIBoMGen",
+                    "supplier": {
+                        "contact": [
+                            {
+                                "email": "wiebe.vandendriessche@ugent.be",
+                                "name": "Wiebe Vandendriessche",
+                                "phone": "+32 9 264 92 00"
+                            }
+                        ],
+                        "name": "IDLab from Imec, Ghent University",
+                        "url": [
+                            "https://www.idlab.ugent.be"
+                        ]
+                    },
+                    "type": "platform",
+                    "version": "0.1.0"
+                }
+            ]
+        }
+    },
+    "serialNumber": "urn:uuid:09762a50-c848-413c-a30d-ddda850da5e0",
+    "version": 1,
+    "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+    "bomFormat": "CycloneDX",
+    "specVersion": "1.6"
+}

@@ -1,0 +1,40 @@
+{
+ "signatures": [
+  {
+   "keyid": "8a98b0773b596abdb6a3c5dc1afc620ee37a2cf5357ce90c9746fab2633162f0",
+   "sig": "4139dfc8e696cb55582f4a57edba90a10626f6ab069eb14a912e92aedc3a85244749c639598e993b9fde43cd4c728cfe8535a3f43093f677c271fa79fcf03907"
+  }
+ ],
+ "signed": {
+  "_type": "link",
+  "byproducts": {
+   "stdout": "Task completed successfully."
+  },
+  "command": [
+   "python",
+   "tasks.py",
+   "run_training"
+  ],
+  "environment": {},
+  "materials": {
+   "43ee333b-af39-4a88-9fab-e97a0d1bf1c1/dataset/mnist_dataset.zip": {
+    "sha256": "54e8b611f8799697f4da427a23b6255bbb4615e35045046f2b99e56b66d11d2c"
+   },
+   "43ee333b-af39-4a88-9fab-e97a0d1bf1c1/definition/mnist_definition.yaml": {
+    "sha256": "b31dd54667af4265de773abd5957f75bc212d06685358a015a4dfc17866cd538"
+   },
+   "43ee333b-af39-4a88-9fab-e97a0d1bf1c1/model/mnist_model.keras": {
+    "sha256": "c38069047b80a534d70a855efd0f120b09a3c122147d5c67d46a3ac191478b23"
+   }
+  },
+  "name": "run_training",
+  "products": {
+   "43ee333b-af39-4a88-9fab-e97a0d1bf1c1/output/metrics.json": {
+    "sha256": "cb464c66d7c123bb29296f009eee49253afac06d36b2b5f48f119174aaa95fb3"
+   },
+   "43ee333b-af39-4a88-9fab-e97a0d1bf1c1/output/trained_model.keras": {
+    "sha256": "9c26b2df1fe745cdd65b942b42acb3481efde9476d7a2b1e9b896759efddd992"
+   }
+  }
+ }
+}
