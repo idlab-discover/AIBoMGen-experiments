@@ -1,4 +1,3 @@
-*.zip
 .vscode/
 tmp/
 # Byte-compiled / optimized / DLL files
