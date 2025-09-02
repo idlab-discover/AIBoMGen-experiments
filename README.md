@@ -18,4 +18,4 @@ This repository contains evaluation scripts and results for the AIBoMGen proof o
 
 ## Publishing
 
-This repository is prepared for publication on [Zenodo](https://zenodo.org/).
+This repository is published on [Zenodo](https://zenodo.org/records/15505280).
