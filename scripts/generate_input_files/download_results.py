@@ -20,15 +20,30 @@ def is_job_finished(s3_client, bucket_name, folder_name):
     Check if the job is finished by looking for the 'output' folder in the specified job folder.
     """
     print(
-        f"Checking if job is finished by looking for 'output' folder in '{folder_name}'...")
+        f"Checking if job is finished by looking for required files in '{folder_name}/output/'...")
+    required_files = [
+        "logs.log",
+        "cyclonedx_bom.json",
+        "metrics.json",
+        "run_training.link",
+        "trained_model.keras"
+    ]
     paginator = s3_client.get_paginator("list_objects_v2")
     pages = paginator.paginate(
         Bucket=bucket_name, Prefix=f"{folder_name}/output/")
 
+    found_files = set()
     for page in pages:
         if "Contents" in page:
-            return True  # 'output' folder exists
-    return False  # 'output' folder not found
+            for obj in page["Contents"]:
+                filename = os.path.basename(obj["Key"])
+                if filename in required_files:
+                    found_files.add(filename)
+    missing_files = set(required_files) - found_files
+    if missing_files:
+        print(f"Still missing files: {missing_files}")
+        return False
+    return True
 
 
 def download_folder_from_minio(s3_client, bucket_name, folder_name, download_dir):
