@@ -1,10 +1,13 @@
 .vscode/
 tmp/
-results/
+results/**
+!results/**/
 !results/**/*.csv
 !results/**/*.png
-tmp/
 # Byte-compiled / optimized / DLL files
+# Ignore everything in results/ except .csv and .png files
+!results/**/*.csv
+!results/**/*.png
 __pycache__/
 *.py[cod]
 *$py.class
