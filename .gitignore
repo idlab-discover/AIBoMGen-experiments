@@ -1,6 +1,8 @@
 .vscode/
 tmp/
 results/
+!results/**/*.csv
+!results/**/*.png
 tmp/
 # Byte-compiled / optimized / DLL files
 __pycache__/
