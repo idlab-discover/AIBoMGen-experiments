@@ -25,7 +25,6 @@ def is_job_finished(s3_client, bucket_name, folder_name):
         "logs.log",
         "cyclonedx_bom.json",
         "metrics.json",
-        "run_training.link",
         "trained_model.keras"
     ]
     paginator = s3_client.get_paginator("list_objects_v2")
@@ -33,15 +32,19 @@ def is_job_finished(s3_client, bucket_name, folder_name):
         Bucket=bucket_name, Prefix=f"{folder_name}/output/")
 
     found_files = set()
+    found_link_file = False
     for page in pages:
         if "Contents" in page:
             for obj in page["Contents"]:
                 filename = os.path.basename(obj["Key"])
                 if filename in required_files:
                     found_files.add(filename)
+                if filename.endswith('.link'):
+                    found_link_file = True
     missing_files = set(required_files) - found_files
-    if missing_files:
-        print(f"Still missing files: {missing_files}")
+    if missing_files or not found_link_file:
+        print(
+            f"Still missing files: {missing_files if missing_files else ''}{' and no .link file found' if not found_link_file else ''}")
         return False
     return True
 
