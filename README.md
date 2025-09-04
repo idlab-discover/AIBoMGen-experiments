@@ -19,3 +19,7 @@ This repository contains evaluation scripts and results for the AIBoMGen proof o
 ## Publishing
 
 This repository is published on [Zenodo](https://zenodo.org/records/15505280).
+
+## Acknowledgements
+
+This work has been partially supported by the CRACY project, funded by the European Union’s Digital Europe Programme under grant agreement No 101190492.
